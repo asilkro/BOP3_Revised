@@ -19,8 +19,6 @@ namespace Silkroski_BOP3
             InitializeComponent();
             GetLocale();
             GetLocalTime();
-            GetTimeZoneLocal();
-            GetTimeZoneUtc();
         }
 
         public LoginScreen(MainScreen mainScreen)

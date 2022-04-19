@@ -64,6 +64,19 @@ namespace Silkroski_BOP3.Forms
             connection.Close();
 
         }
+        #region Error Checking
+
+
+
+        #endregion
+
+        #region Alerting
+
+
+
+        #endregion
+
+        #region Examples //TODO: REMOVE
         private static void ExecuteSqlTransaction(string connectionString) // TODO: REMOVE THIS EXAMPLE
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -115,5 +128,10 @@ namespace Silkroski_BOP3.Forms
                 }
             }
         }
+
+
+        #endregion
+
     }
+
 }
