@@ -43,7 +43,7 @@ namespace Silkroski_BOP3
             PasswordField.Text = null;
         }
 
-        #region Locale
+        #region Locale //TODO: Add error messages in 
 
         public void CultureInfo()
         {
@@ -61,6 +61,7 @@ namespace Silkroski_BOP3
             }
             
         }
+
 
         public void DeutschSprechen()
         {
@@ -143,6 +144,26 @@ namespace Silkroski_BOP3
             MessageBox.Show("Connection opened");
             sqlConnection.Close();
         }
+
+        #region Error Handling
+
+        
+
+        public void Fehlerbehandlung()
+        {
+            //TODO: Error handling language in German
+            MessageBox.Show("Bei Ihrer Anwendung ist ein Fehler aufgetreten.", "Fehlermeldung");
+            return;
+        }
+
+        public void ErrorHandling()
+        {
+            //TODO: Error handling language in English
+            MessageBox.Show("Your application encountered an error.", "Error Message");
+            return;
+        }
+
+        #endregion
 
     }
 }
