@@ -46,6 +46,7 @@ namespace Silkroski_BOP3
             this.OffsetBox = new System.Windows.Forms.TextBox();
             this.OffsetLabel = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.GermanBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // UserField
@@ -206,11 +207,22 @@ namespace Silkroski_BOP3
             this.label4.TabIndex = 2;
             this.label4.Text = "Debug Only";
             // 
+            // GermanBtn
+            // 
+            this.GermanBtn.Location = new System.Drawing.Point(634, 396);
+            this.GermanBtn.Name = "GermanBtn";
+            this.GermanBtn.Size = new System.Drawing.Size(120, 23);
+            this.GermanBtn.TabIndex = 4;
+            this.GermanBtn.Text = "German Debug";
+            this.GermanBtn.UseVisualStyleBackColor = true;
+            this.GermanBtn.Click += new System.EventHandler(this.GermanBtn_Click);
+            // 
             // LoginScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1358, 652);
+            this.Controls.Add(this.GermanBtn);
             this.Controls.Add(this.ClearBtn);
             this.Controls.Add(this.ExitBtn);
             this.Controls.Add(this.LoginBtn);
@@ -256,6 +268,7 @@ namespace Silkroski_BOP3
         private System.Windows.Forms.TextBox OffsetBox;
         private System.Windows.Forms.Label OffsetLabel;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button GermanBtn;
     }
 }
 

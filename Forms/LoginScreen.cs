@@ -14,11 +14,12 @@ namespace Silkroski_BOP3
 {
     public partial class LoginScreen : Form
     {
+        protected string Sprache = null; // Used to track language
+
         public LoginScreen()
         {
             InitializeComponent();
-            GetLocale();
-            GetLocalTime();
+            CultureInfo();
         }
 
         public LoginScreen(MainScreen mainScreen)
@@ -44,16 +45,41 @@ namespace Silkroski_BOP3
 
         #region Locale
 
-        public void GetLocale()
+        public void CultureInfo()
         {
-            CultureInfo ci = CultureInfo.InstalledUICulture;
-            LocaleBox.Text = $"{ci}";
+            var twoLetterIsoLangName = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            if (twoLetterIsoLangName.ToString() == "de")
+            {
+                DeutschSprechen();
+                string Sprache = "Deutsch";
+                return;
+            }
+            else
+            {
+                MessageBox.Show($"{twoLetterIsoLangName}");
+                string Sprache = "Other";
+            }
+            
         }
 
-        public void GetLocalTime()
+        public void DeutschSprechen()
         {
-            System.DateTime dtLocalTime = DateTime.Now.ToLocalTime();
-            LocalTimeBox.Text = $"{dtLocalTime}";
+            UserIDLabel.Text = "Benutzer-ID";
+            PasswordLabel.Text = "Passwort";
+            LoginBtn.Text = "Anmelden";
+            ClearBtn.Text = "Leeren";
+            ExitBtn.Text = "Schließen";
+            Sprache = "Deutsch";
+        }
+
+        public void BackToEnglish()
+        {
+            UserIDLabel.Text = "UserID";
+            PasswordLabel.Text = "Password";
+            LoginBtn.Text = "Login";
+            ClearBtn.Text = "Clear";
+            ExitBtn.Text = "Exit";
+            Sprache = "Other";
         }
 
         public void GetTimeZoneOffset()
@@ -104,6 +130,18 @@ namespace Silkroski_BOP3
             sqlConnection.Open();
             MessageBox.Show("Connection opened");
             sqlConnection.Close();
+        }
+
+        private void GermanBtn_Click(object sender, EventArgs e)
+        {
+            if (Sprache == "Other")
+            {
+                DeutschSprechen();
+            }
+            else
+            {
+                BackToEnglish();
+            }
         }
     }
 }
