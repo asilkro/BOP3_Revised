@@ -51,13 +51,13 @@ namespace Silkroski_BOP3
             if (twoLetterIsoLangName.ToString() == "de")
             {
                 DeutschSprechen();
-                string Sprache = "Deutsch";
                 return;
             }
             else
             {
-                MessageBox.Show($"{twoLetterIsoLangName}");
-                string Sprache = "Other";
+                BackToEnglish();
+                // MessageBox.Show($"{twoLetterIsoLangName}");
+                return;
             }
             
         }
@@ -80,6 +80,18 @@ namespace Silkroski_BOP3
             ClearBtn.Text = "Clear";
             ExitBtn.Text = "Exit";
             Sprache = "Other";
+        }
+
+        private void GermanBtn_Click(object sender, EventArgs e)
+        {
+            if (Sprache == "Other")
+            {
+                DeutschSprechen();
+            }
+            else
+            {
+                BackToEnglish();
+            }
         }
 
         public void GetTimeZoneOffset()
@@ -132,16 +144,5 @@ namespace Silkroski_BOP3
             sqlConnection.Close();
         }
 
-        private void GermanBtn_Click(object sender, EventArgs e)
-        {
-            if (Sprache == "Other")
-            {
-                DeutschSprechen();
-            }
-            else
-            {
-                BackToEnglish();
-            }
-        }
     }
 }
