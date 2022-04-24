@@ -209,9 +209,9 @@ namespace Silkroski_BOP3
             // 
             // GermanBtn
             // 
-            this.GermanBtn.Location = new System.Drawing.Point(634, 396);
+            this.GermanBtn.Location = new System.Drawing.Point(61, 545);
             this.GermanBtn.Name = "GermanBtn";
-            this.GermanBtn.Size = new System.Drawing.Size(120, 23);
+            this.GermanBtn.Size = new System.Drawing.Size(412, 23);
             this.GermanBtn.TabIndex = 4;
             this.GermanBtn.Text = "German Debug";
             this.GermanBtn.UseVisualStyleBackColor = true;
