@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Silkroski_BOP3.Forms;
+using Silkroski_C969_Revised.Models;
 
 namespace Silkroski_BOP3
 {
@@ -145,6 +146,30 @@ namespace Silkroski_BOP3
             sqlConnection.Close();
         }
 
+        private void OpenSqlConnection2() // Alternative to connection builder
+        {
+            string myConnectionString = null;
+            string outputMessage = null;
+
+            myConnectionString = "server=127.0.0.1;uid=root;" +
+                                 "pwd=12345;database=test";
+
+            try //TODO: Review and make sure this works the way you want when you're not sick!
+            {
+                MySql.Data.MySqlClient.MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection();
+                conn.ConnectionString = myConnectionString;
+                outputMessage = conn.State.ToString();
+                LogWrite.WriteToLog(conn.State.ToString(outputMessage));
+                conn.Open();
+                outputMessage = conn.State.ToString();
+                LogWrite.WriteToLog(conn.State.ToString(outputMessage));
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         #region Error Handling
 
         
@@ -153,14 +178,12 @@ namespace Silkroski_BOP3
         {
             //TODO: Error handling language in German
             MessageBox.Show("Bei Ihrer Anwendung ist ein Fehler aufgetreten.", "Fehlermeldung");
-            return;
         }
 
         public void ErrorHandling()
         {
             //TODO: Error handling language in English
             MessageBox.Show("Your application encountered an error.", "Error Message");
-            return;
         }
 
         #endregion

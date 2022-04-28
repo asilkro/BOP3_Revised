@@ -71,6 +71,7 @@
     <Compile Include="Models\DateTime.cs" />
     <Compile Include="Models\DbConnection.cs" />
     <Compile Include="Models\Log.cs" />
+    <Compile Include="Models\LogWrite.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
