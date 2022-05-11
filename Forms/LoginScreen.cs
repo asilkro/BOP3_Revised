@@ -1,4 +1,5 @@
 ﻿using System;
+using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -166,8 +167,9 @@ namespace Silkroski_BOP3
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message,"SQL Error");
             }
+
         }
 
         #region Error Handling
