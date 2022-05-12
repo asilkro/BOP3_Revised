@@ -125,7 +125,7 @@ namespace Silkroski_BOP3
             this.Hide();
         }
 
-        private void OpenSqlConnection() // Found good info here: https://www.c-sharpcorner.com/blogs/how-to-use-sqlconnectionstringbuilder-in-c-sharp1
+        private void OpenSqlConnection() // Found good info here:
         {
             SqlConnection sqlConnection = new SqlConnection();
             
@@ -170,6 +170,38 @@ namespace Silkroski_BOP3
                 MessageBox.Show(ex.Message,"SQL Error");
             }
 
+        }
+
+        protected string BuildSqlConnectionString()
+        {
+            //Setup section
+            string builtConnectionString = null;
+
+            //Build a connection string
+            SqlConnectionStringBuilder connectionStringBuilder = new SqlConnectionStringBuilder(); // https://www.c-sharpcorner.com/blogs/how-to-use-sqlconnectionstringbuilder-in-c-sharp1
+         //   connectionStringBuilder.UserID = UserField.Text.ToString(); // Should work
+         //   connectionStringBuilder.Password = PasswordField.Text.ToString(); // Not sure this is valid
+            connectionStringBuilder.UserID = "test";
+            connectionStringBuilder.Password = "test";
+            connectionStringBuilder.Authentication = SqlAuthenticationMethod.SqlPassword;
+            connectionStringBuilder.ApplicationName = "Silkroski_BOP3";
+            connectionStringBuilder.InitialCatalog = "application"; //TODO: Find out what the actual DB is supposed to be called
+            connectionStringBuilder.DataSource = "LOCALHOST";
+            // This all matches the data that MySQL Workbench used
+
+            builtConnectionString = connectionStringBuilder.ConnectionString;
+            return builtConnectionString;
+        }
+
+        protected void ConnectWithBuiltSqlConnectionString(string builtConnectionString)
+        {
+            SqlConnection builtSqlConnection = new SqlConnection(builtConnectionString);
+            string outputMessage = builtSqlConnection.State.ToString();
+            LogWrite.WriteToLog(builtSqlConnection.State.ToString(outputMessage));
+            builtSqlConnection.Open();
+            outputMessage = builtSqlConnection.State.ToString();
+            LogWrite.WriteToLog(builtSqlConnection.State.ToString(outputMessage));
+            MessageBox.Show(builtConnectionString);
         }
 
         #region Error Handling
