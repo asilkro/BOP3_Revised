@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 using Silkroski_BOP3.Models;
 
 namespace Silkroski_BOP3.Forms
@@ -42,9 +43,19 @@ namespace Silkroski_BOP3.Forms
 
         private void DataGridViewPop()
         {
-            DataGridView dgv = new DataGridView();
             //TODO: Implement something that populates the DGV & does "print"
+            SqlConnectionCheck(); // This needs to do something
+            DataGridView mainDataGridView = new DataGridView();
+            DataTable mainDataTable = new DataTable();
+            MySqlDataAdapter mainMySqlDataAdapter = new MySqlDataAdapter();
+            mainMySqlDataAdapter.FillAsync(mainDataTable);
+            mainDataGridView.DataSource = mainDataTable;
+            mainDataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
 
+        public void SqlConnectionCheck()
+        {
+            //TODO: Check SQL connection state -> need to figure out how to record/read the state
         }
 
         protected void GenerateSQLData()
@@ -107,7 +118,6 @@ namespace Silkroski_BOP3.Forms
             //TODO
             MessageBox.Show("Implement a remove customer form");
         }
-        #endregion
 
         private void CreateAppt()
         {

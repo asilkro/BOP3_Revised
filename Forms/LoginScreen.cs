@@ -147,7 +147,7 @@ namespace Silkroski_BOP3
             sqlConnection.Close();
         }
 
-        private void OpenSqlConnection2() // Alternative to connection builder
+        public void OpenSqlConnection2() // Alternative to connection builder
         {
             string myConnectionString = null;
             string outputMessage = null;
@@ -157,7 +157,7 @@ namespace Silkroski_BOP3
 
             try //TODO: Review and make sure this works the way you want when you're not sick!
             {
-                MySql.Data.MySqlClient.MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection();
+                MySqlConnection conn = new MySqlConnection();
                 conn.ConnectionString = myConnectionString;
                 outputMessage = conn.State.ToString();
                 LogWrite.WriteToLog(conn.State.ToString(outputMessage));
