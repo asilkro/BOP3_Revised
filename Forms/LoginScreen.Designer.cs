@@ -47,6 +47,7 @@ namespace Silkroski_BOP3
             this.OffsetLabel = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.GermanBtn = new System.Windows.Forms.Button();
+            this.debugSQLbutton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // UserField
@@ -217,6 +218,17 @@ namespace Silkroski_BOP3
             this.GermanBtn.UseVisualStyleBackColor = true;
             this.GermanBtn.Click += new System.EventHandler(this.GermanBtn_Click);
             // 
+            // debugSQLbutton
+            // 
+            this.debugSQLbutton.Location = new System.Drawing.Point(759, 464);
+            this.debugSQLbutton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.debugSQLbutton.Name = "debugSQLbutton";
+            this.debugSQLbutton.Size = new System.Drawing.Size(129, 46);
+            this.debugSQLbutton.TabIndex = 3;
+            this.debugSQLbutton.Text = "Debug SQL";
+            this.debugSQLbutton.UseVisualStyleBackColor = true;
+            this.debugSQLbutton.Click += new System.EventHandler(this.debugSQLbutton_Click);
+            // 
             // LoginScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -225,6 +237,7 @@ namespace Silkroski_BOP3
             this.Controls.Add(this.GermanBtn);
             this.Controls.Add(this.ClearBtn);
             this.Controls.Add(this.ExitBtn);
+            this.Controls.Add(this.debugSQLbutton);
             this.Controls.Add(this.LoginBtn);
             this.Controls.Add(this.PasswordLabel);
             this.Controls.Add(this.label4);
@@ -269,6 +282,7 @@ namespace Silkroski_BOP3
         private System.Windows.Forms.Label OffsetLabel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button GermanBtn;
+        private System.Windows.Forms.Button debugSQLbutton;
     }
 }
 

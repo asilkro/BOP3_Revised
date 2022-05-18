@@ -160,10 +160,13 @@ namespace Silkroski_BOP3
                 MySqlConnection conn = new MySqlConnection();
                 conn.ConnectionString = myConnectionString;
                 outputMessage = conn.State.ToString();
-                LogWrite.WriteToLog(conn.State.ToString(outputMessage));
+                MessageBox.Show(conn.State.ToString());
+                //LogWrite.WriteToLog(conn.State.ToString(outputMessage));
                 conn.Open();
+                MessageBox.Show(conn.State.ToString());
                 outputMessage = conn.State.ToString();
-                LogWrite.WriteToLog(conn.State.ToString(outputMessage));
+                //LogWrite.WriteToLog(conn.State.ToString(outputMessage));
+                MessageBox.Show(conn.State.ToString());
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
@@ -172,7 +175,7 @@ namespace Silkroski_BOP3
 
         }
 
-        protected string BuildSqlConnectionString()
+        public string BuildSqlConnectionString()
         {
             //Setup section
             string builtConnectionString = null;
@@ -193,15 +196,16 @@ namespace Silkroski_BOP3
             return builtConnectionString;
         }
 
-        protected void ConnectWithBuiltSqlConnectionString(string builtConnectionString)
+        public void ConnectWithBuiltSqlConnectionString(string builtConnectionString)
         {
             SqlConnection builtSqlConnection = new SqlConnection(builtConnectionString);
             string outputMessage = builtSqlConnection.State.ToString();
             LogWrite.WriteToLog(builtSqlConnection.State.ToString(outputMessage));
             builtSqlConnection.Open();
+            MessageBox.Show(outputMessage);
             outputMessage = builtSqlConnection.State.ToString();
             LogWrite.WriteToLog(builtSqlConnection.State.ToString(outputMessage));
-            MessageBox.Show(builtConnectionString);
+            MessageBox.Show(outputMessage);
         }
 
         #region Error Handling
@@ -222,5 +226,10 @@ namespace Silkroski_BOP3
 
         #endregion
 
+        private void debugSQLbutton_Click(object sender, EventArgs e)
+        {
+            BuildSqlConnectionString();
+            ConnectWithBuiltSqlConnectionString();
+        }
     }
 }
