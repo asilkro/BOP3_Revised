@@ -227,6 +227,7 @@ namespace Silkroski_BOP3.Forms
             this.Controls.Add(this.monthCalendar1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainScreen";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Database Utility Tool - Logged In";
             ((System.ComponentModel.ISupportInitialize)(this.appointments_DGV)).EndInit();
             this.ResumeLayout(false);

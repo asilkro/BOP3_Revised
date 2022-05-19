@@ -257,6 +257,7 @@ namespace Silkroski_BOP3
             this.Name = "LoginScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Database Utility Tool - Login";
+            this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();
 

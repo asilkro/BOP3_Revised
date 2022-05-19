@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Silkroski_BOP3.Forms;
+using Silkroski_BOP3.Models;
 using Silkroski_C969_Revised.Models;
 
 namespace Silkroski_BOP3
@@ -17,6 +18,7 @@ namespace Silkroski_BOP3
     public partial class LoginScreen : Form
     {
         protected string Sprache = null; // Used to track language
+
 
         public LoginScreen()
         {
@@ -27,6 +29,7 @@ namespace Silkroski_BOP3
         public LoginScreen(MainScreen mainScreen)
         {
             InitializeComponent();
+            mainScreen.Hide();
         }
 
         private void ExitBtnClick(object sender, EventArgs e)
@@ -120,92 +123,7 @@ namespace Silkroski_BOP3
 
         private void LoginBtn_Click(object sender, EventArgs e)
         {
-            //OpenSqlConnection();
-            new MainScreen(this).Show();
-            this.Hide();
-        }
-
-        private void OpenSqlConnection() // Found good info here:
-        {
-            SqlConnection sqlConnection = new SqlConnection();
-            
-            //Building a connection string
-            SqlConnectionStringBuilder connectionStringBuilder = new SqlConnectionStringBuilder();
-            connectionStringBuilder.UserID = UserField.Text.ToString(); // Should work
-            connectionStringBuilder.Password = PasswordField.Text.ToString(); // Not sure this is valid
-            connectionStringBuilder.DataSource = "LOCALHOST"; // Machine ID ?
-            connectionStringBuilder.InitialCatalog = "appointment"; // Initial DB? Table?
-            //Not required but maybe useful?
-            connectionStringBuilder.ConnectRetryCount = 3;
-            connectionStringBuilder.ConnectTimeout = 30;
-
-            
-            //Connecting
-            sqlConnection.ConnectionString = connectionStringBuilder.ConnectionString;
-            sqlConnection.Open();
-            MessageBox.Show("Connection opened");
-            sqlConnection.Close();
-        }
-
-        public void OpenSqlConnection2() // Alternative to connection builder
-        {
-            string myConnectionString = null;
-            string outputMessage = null;
-
-            myConnectionString = "server=127.0.0.1;uid=root;" +
-                                 "pwd=12345;database=test";
-
-            try //TODO: Review and make sure this works the way you want when you're not sick!
-            {
-                MySqlConnection conn = new MySqlConnection();
-                conn.ConnectionString = myConnectionString;
-                outputMessage = conn.State.ToString();
-                MessageBox.Show(conn.State.ToString());
-                //LogWrite.WriteToLog(conn.State.ToString(outputMessage));
-                conn.Open();
-                MessageBox.Show(conn.State.ToString());
-                outputMessage = conn.State.ToString();
-                //LogWrite.WriteToLog(conn.State.ToString(outputMessage));
-                MessageBox.Show(conn.State.ToString());
-            }
-            catch (MySql.Data.MySqlClient.MySqlException ex)
-            {
-                MessageBox.Show(ex.Message,"SQL Error");
-            }
-
-        }
-
-        public string BuildSqlConnectionString()
-        {
-            //Setup section
-            string builtConnectionString = null;
-
-            //Build a connection string
-            SqlConnectionStringBuilder connectionStringBuilder = new SqlConnectionStringBuilder(); // https://www.c-sharpcorner.com/blogs/how-to-use-sqlconnectionstringbuilder-in-c-sharp1
-         //   connectionStringBuilder.UserID = UserField.Text.ToString(); // Should work
-         //   connectionStringBuilder.Password = PasswordField.Text.ToString(); // Not sure this is valid
-            connectionStringBuilder.UserID = "test";
-            connectionStringBuilder.Password = "test";
-            connectionStringBuilder.Authentication = SqlAuthenticationMethod.SqlPassword;
-            connectionStringBuilder.ApplicationName = "Silkroski_BOP3";
-            connectionStringBuilder.InitialCatalog = "application"; //TODO: Find out what the actual DB is supposed to be called
-            connectionStringBuilder.DataSource = "LOCALHOST";
-            // This all matches the data that MySQL Workbench used
-
-            builtConnectionString = connectionStringBuilder.ConnectionString;
-            return builtConnectionString;
-        }
-
-        public void ConnectWithBuiltSqlConnectionString(string builtConnectionString)
-        {
-            SqlConnection builtSqlConnection = new SqlConnection(builtConnectionString);
-            string outputMessage = builtSqlConnection.State.ToString();
-            LogWrite.WriteToLog(builtSqlConnection.State.ToString(outputMessage));
-            builtSqlConnection.Open();
-            MessageBox.Show(outputMessage);
-            outputMessage = builtSqlConnection.State.ToString();
-            LogWrite.WriteToLog(builtSqlConnection.State.ToString(outputMessage));
-            MessageBox.Show(outputMessage);
+            MainScreen.Instance.OnLoginSubmitted(UserField.Text, PasswordField.Text);
         }
 
         #region Error Handling
@@ -228,8 +146,7 @@ namespace Silkroski_BOP3
 
         private void debugSQLbutton_Click(object sender, EventArgs e)
         {
-            BuildSqlConnectionString();
-            ConnectWithBuiltSqlConnectionString();
+
         }
     }
 }

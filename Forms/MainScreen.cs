@@ -17,18 +17,57 @@ namespace Silkroski_BOP3.Forms
 {
     public partial class MainScreen : Form
     {
+        public static DbConnection Connection => _connection; //Read-only accessor with Lambda for ease of reading
+        private static DbConnection _connection;
+
+        public static MainScreen Instance => _instance; //Read-only accessor with Lambda for ease of reading
+        private static MainScreen _instance;
+
         LoginScreen loginScreen;
 
-        public MainScreen(LoginScreen loginScreen)
+        public MainScreen()
         {
             InitializeComponent();
+            _instance = this;
+            _connection = new DbConnection();
+
+            MessageBox.Show("Please login to continue", "Login required");
+
+
+            Login();
+        }
+        
+        public MainScreen(LoginScreen loginScreen) : this()
+        {
             this.loginScreen = loginScreen;
+        }
+
+        private void Login()
+        {
+            if (loginScreen == null)
+            {
+                loginScreen = new LoginScreen(this);
+            }
+
+            loginScreen.Show();
+            this.Hide();
+            this.Visible = false;
+
+        }
+
+        public void OnLoginSubmitted(string userID, string password)
+        {
+            Connection.Connect(userID, password);
+        }
+
+        private void Logout()
+        {
+
         }
 
         private void LogOutButton_Click(object sender, EventArgs e)
         {
-            new LoginScreen(this).Show();
-            this.Close();
+            Login();
         }
 
         private void QuitButton_Click(object sender, EventArgs e)
@@ -138,6 +177,11 @@ namespace Silkroski_BOP3.Forms
         }
         #endregion
 
+        private void MainScreen_Load(object sender, EventArgs e)
+        {
+            MessageBox.Show("Please login to continue", "Login required");
+            Login();
+        }
     }
 
 }
