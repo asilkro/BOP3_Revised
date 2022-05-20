@@ -1,34 +1,23 @@
 ﻿using System;
-using MySql.Data.MySqlClient;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
 using System.Globalization;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Silkroski_BOP3.Forms;
-using Silkroski_BOP3.Models;
 using Silkroski_C969_Revised.Models;
 
 namespace Silkroski_BOP3
 {
     public partial class LoginScreen : Form
     {
-        protected string Sprache = null; // Used to track language
-
-
         public LoginScreen()
         {
             InitializeComponent();
-            CultureInfo();
+            SetLanguage();
         }
 
         public LoginScreen(MainScreen mainScreen)
         {
             InitializeComponent();
+            SetLanguage();
             mainScreen.Hide();
         }
 
@@ -48,56 +37,43 @@ namespace Silkroski_BOP3
             PasswordField.Text = null;
         }
 
-        #region Locale //TODO: Add error messages in 
+        #region Locale //TODO: Add error messages in German
 
-        public void CultureInfo()
+        private void SetLanguage()
         {
-            var twoLetterIsoLangName = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-            if (twoLetterIsoLangName.ToString() == "de")
+            switch (RegionInfo.CurrentRegion.EnglishName)
             {
-                DeutschSprechen();
-                return;
+                case "United States":
+                    SetToEnglish();
+                    break;
+
+                case "Germany":
+                    SetToGerman();
+                    break;
+
+                default:
+                    SetToEnglish();
+                    break;
+
             }
-            else
-            {
-                BackToEnglish();
-                // MessageBox.Show($"{twoLetterIsoLangName}");
-                return;
-            }
-            
         }
 
-
-        public void DeutschSprechen()
+        public void SetToGerman()
         {
             UserIDLabel.Text = "Benutzer-ID";
             PasswordLabel.Text = "Passwort";
             LoginBtn.Text = "Anmelden";
             ClearBtn.Text = "Leeren";
             ExitBtn.Text = "Schließen";
-            Sprache = "Deutsch";
         }
 
-        public void BackToEnglish()
+        public void SetToEnglish()
         {
             UserIDLabel.Text = "UserID";
             PasswordLabel.Text = "Password";
             LoginBtn.Text = "Login";
             ClearBtn.Text = "Clear";
             ExitBtn.Text = "Exit";
-            Sprache = "Other";
-        }
-
-        private void GermanBtn_Click(object sender, EventArgs e)
-        {
-            if (Sprache == "Other")
-            {
-                DeutschSprechen();
-            }
-            else
-            {
-                BackToEnglish();
-            }
         }
 
         public void GetTimeZoneOffset()
