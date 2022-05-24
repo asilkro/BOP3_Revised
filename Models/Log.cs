@@ -1,22 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Silkroski_C969_Revised.Models
 {
-    public partial class Log
+    public class Log
     {
-        #region Fields / Properties
+        #region Properties / Fields
 
-        public int EventNumber { get; set; }
 
-        public string EventName { get; set; }
 
-        public DateTime TimeStamp { get; set; }
-
-        public string MessageDetails { get; set; }
         #endregion
 
         #region Constructors
@@ -26,15 +22,32 @@ namespace Silkroski_C969_Revised.Models
 
         }
 
-        public Log(int eventNumber, string eventName, DateTime timeStamp, string messageDetails)
+        #endregion
+
+        #region Methods
+
+        public void CreateLogFile()
         {
-            eventNumber = EventNumber;
-            eventName = EventName;
-            timeStamp = TimeStamp;
-            messageDetails = MessageDetails;
+            string pwd = System.IO.Directory.GetCurrentDirectory();
+            DateTime now = DateTime.Now;
+            StreamWriter streamWriter = System.IO.File.AppendText(pwd + "LogFile.txt");
+            streamWriter.WriteLine("Log file created at {}" + now);
         }
 
+        public void AppendLogFile()
+        {
+            string message = GetMessage();
+            string pwd = System.IO.Directory.GetCurrentDirectory();
+            DateTime now = DateTime.Now;
+            StreamWriter streamWriter = System.IO.File.AppendText(pwd + "LogFile.txt");
+        }
+
+        private string GetMessage() // TODO: Make a GetMessage
+        {
+            throw new NotImplementedException();
+        }
 
         #endregion
+
     }
 }

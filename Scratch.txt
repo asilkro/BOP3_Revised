@@ -1,0 +1,6 @@
+﻿StreamWriter as means to do logging
+-> https://docs.microsoft.com/en-us/dotnet/api/system.io.streamwriter?view=net-6.0
+-> login is good / bad
+- no other logging required
+
+ConnectionString - set in App.Config and call elsewhere

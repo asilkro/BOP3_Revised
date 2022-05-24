@@ -3,9 +3,9 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Security;
 using System.Windows.Forms;
-using Silkroski_C969_Revised.Models;
+using Silkroski_C969_Revised.Properties;
 
-namespace Silkroski_BOP3.Models
+namespace Silkroski_C969_Revised.Models
 {
     public class DbConnection
     {
