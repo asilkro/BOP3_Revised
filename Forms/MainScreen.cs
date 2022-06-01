@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
-using Silkroski_BOP3.Models;
+using Silkroski_C969_Revised.Models;
 
 namespace Silkroski_BOP3.Forms
 {

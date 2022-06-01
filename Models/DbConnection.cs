@@ -58,7 +58,7 @@ namespace Silkroski_C969_Revised.Models
             connectionStringBuilder.Password = password;
             connectionStringBuilder.Authentication = SqlAuthenticationMethod.SqlPassword;
             connectionStringBuilder.ApplicationName = "Silkroski_BOP3";
-            connectionStringBuilder.InitialCatalog = "application"; //TODO: Find out what the actual DB is supposed to be called
+            connectionStringBuilder.InitialCatalog = "client_schedule"; //TODO: set up in
             connectionStringBuilder.DataSource = "LOCALHOST";
             // This all matches the data that MySQL Workbench used
 
