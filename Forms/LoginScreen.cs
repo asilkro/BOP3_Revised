@@ -2,7 +2,6 @@
 using System.Globalization;
 using System.Windows.Forms;
 using Silkroski_BOP3.Forms;
-using Silkroski_C969_Revised.Models;
 
 namespace Silkroski_BOP3
 {
@@ -76,30 +75,18 @@ namespace Silkroski_BOP3
             ExitBtn.Text = "Exit";
         }
 
-        public void GetTimeZoneOffset()
-        {
-            string tzOffset = null;
-            tzOffset = "Placeholder";
-            OffsetBox.Text = $"{tzOffset}";
-        }
-
-        public void GetTimeZoneLocal()
-        {
-            System.TimeZoneInfo tzLocal = System.TimeZoneInfo.Local;
-            MessageBox.Show($"{tzLocal}","TimeZoneInfo - Local");
-        }
-
-        public void GetTimeZoneUtc()
-        {
-            System.TimeZoneInfo tzUtc = System.TimeZoneInfo.Utc;
-            MessageBox.Show($"{tzUtc}","TimeZoneInfo - UTC");
-        }
-
         #endregion
 
         private void LoginBtn_Click(object sender, EventArgs e)
         {
-            MainScreen.Instance.OnLoginSubmitted(UserField.Text, PasswordField.Text);
+            if (UserField.Text == "test" && PasswordField.Text == "test") // a valid login
+            {
+                MainScreen.Instance.OnLoginSubmitted(UserField.Text, PasswordField.Text);
+            }
+            else
+            {
+                MessageBox.Show("Invalid login", "Login error");
+            }
         }
 
         #region Error Handling
@@ -122,7 +109,7 @@ namespace Silkroski_BOP3
 
         private void debugSQLbutton_Click(object sender, EventArgs e)
         {
-
+            //TODO: Does this need to exist?
         }
     }
 }
