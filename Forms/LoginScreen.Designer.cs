@@ -36,17 +36,7 @@ namespace Silkroski_BOP3
             this.PasswordLabel = new System.Windows.Forms.Label();
             this.LoginBtn = new System.Windows.Forms.Button();
             this.ClearBtn = new System.Windows.Forms.Button();
-            this.LocaleLanguageLabel = new System.Windows.Forms.Label();
             this.ExitBtn = new System.Windows.Forms.Button();
-            this.LocaleBox = new System.Windows.Forms.TextBox();
-            this.debugLabel = new System.Windows.Forms.Label();
-            this.LocalTimeBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.OffsetBox = new System.Windows.Forms.TextBox();
-            this.OffsetLabel = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.debugSQLbutton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // UserField
@@ -115,15 +105,6 @@ namespace Silkroski_BOP3
             this.ClearBtn.UseVisualStyleBackColor = true;
             this.ClearBtn.Click += new System.EventHandler(this.ClearBtn_Click);
             // 
-            // LocaleLanguageLabel
-            // 
-            this.LocaleLanguageLabel.AutoSize = true;
-            this.LocaleLanguageLabel.Location = new System.Drawing.Point(61, 477);
-            this.LocaleLanguageLabel.Name = "LocaleLanguageLabel";
-            this.LocaleLanguageLabel.Size = new System.Drawing.Size(98, 13);
-            this.LocaleLanguageLabel.TabIndex = 2;
-            this.LocaleLanguageLabel.Text = "Locale / Language";
-            // 
             // ExitBtn
             // 
             this.ExitBtn.Location = new System.Drawing.Point(945, 466);
@@ -135,89 +116,6 @@ namespace Silkroski_BOP3
             this.ExitBtn.UseVisualStyleBackColor = true;
             this.ExitBtn.Click += new System.EventHandler(this.ExitBtnClick);
             // 
-            // LocaleBox
-            // 
-            this.LocaleBox.Location = new System.Drawing.Point(61, 492);
-            this.LocaleBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.LocaleBox.Name = "LocaleBox";
-            this.LocaleBox.ReadOnly = true;
-            this.LocaleBox.Size = new System.Drawing.Size(129, 20);
-            this.LocaleBox.TabIndex = 0;
-            // 
-            // debugLabel
-            // 
-            this.debugLabel.AutoSize = true;
-            this.debugLabel.Location = new System.Drawing.Point(61, 464);
-            this.debugLabel.Name = "debugLabel";
-            this.debugLabel.Size = new System.Drawing.Size(63, 13);
-            this.debugLabel.TabIndex = 2;
-            this.debugLabel.Text = "Debug Only";
-            // 
-            // LocalTimeBox
-            // 
-            this.LocalTimeBox.Location = new System.Drawing.Point(201, 492);
-            this.LocalTimeBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.LocalTimeBox.Name = "LocalTimeBox";
-            this.LocalTimeBox.ReadOnly = true;
-            this.LocalTimeBox.Size = new System.Drawing.Size(129, 20);
-            this.LocalTimeBox.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(201, 477);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Local Time";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(201, 464);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Debug Only";
-            // 
-            // OffsetBox
-            // 
-            this.OffsetBox.Location = new System.Drawing.Point(344, 492);
-            this.OffsetBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.OffsetBox.Name = "OffsetBox";
-            this.OffsetBox.ReadOnly = true;
-            this.OffsetBox.Size = new System.Drawing.Size(129, 20);
-            this.OffsetBox.TabIndex = 0;
-            // 
-            // OffsetLabel
-            // 
-            this.OffsetLabel.AutoSize = true;
-            this.OffsetLabel.Location = new System.Drawing.Point(344, 477);
-            this.OffsetLabel.Name = "OffsetLabel";
-            this.OffsetLabel.Size = new System.Drawing.Size(112, 13);
-            this.OffsetLabel.TabIndex = 2;
-            this.OffsetLabel.Text = "Local Offset from UTC";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(344, 464);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 13);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Debug Only";
-            // 
-            // debugSQLbutton
-            // 
-            this.debugSQLbutton.Location = new System.Drawing.Point(759, 464);
-            this.debugSQLbutton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.debugSQLbutton.Name = "debugSQLbutton";
-            this.debugSQLbutton.Size = new System.Drawing.Size(129, 46);
-            this.debugSQLbutton.TabIndex = 3;
-            this.debugSQLbutton.Text = "Debug SQL";
-            this.debugSQLbutton.UseVisualStyleBackColor = true;
-            this.debugSQLbutton.Click += new System.EventHandler(this.debugSQLbutton_Click);
-            // 
             // LoginScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -225,21 +123,11 @@ namespace Silkroski_BOP3
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.ClearBtn);
             this.Controls.Add(this.ExitBtn);
-            this.Controls.Add(this.debugSQLbutton);
             this.Controls.Add(this.LoginBtn);
             this.Controls.Add(this.PasswordLabel);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.OffsetLabel);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.debugLabel);
-            this.Controls.Add(this.LocaleLanguageLabel);
             this.Controls.Add(this.UserIDLabel);
             this.Controls.Add(this.UserLabel);
             this.Controls.Add(this.PasswordField);
-            this.Controls.Add(this.OffsetBox);
-            this.Controls.Add(this.LocalTimeBox);
-            this.Controls.Add(this.LocaleBox);
             this.Controls.Add(this.UserField);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "LoginScreen";
@@ -260,17 +148,7 @@ namespace Silkroski_BOP3
         private System.Windows.Forms.Label PasswordLabel;
         private System.Windows.Forms.Button LoginBtn;
         private System.Windows.Forms.Button ClearBtn;
-        private System.Windows.Forms.Label LocaleLanguageLabel;
         private System.Windows.Forms.Button ExitBtn;
-        private System.Windows.Forms.TextBox LocaleBox;
-        private System.Windows.Forms.Label debugLabel;
-        private System.Windows.Forms.TextBox LocalTimeBox;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox OffsetBox;
-        private System.Windows.Forms.Label OffsetLabel;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button debugSQLbutton;
     }
 }
 
