@@ -143,7 +143,7 @@ namespace Silkroski_C969_Revised.Forms
             // 
             // CxSaveButton
             // 
-            this.CxSaveButton.Location = new System.Drawing.Point(462, 591);
+            this.CxSaveButton.Location = new System.Drawing.Point(463, 365);
             this.CxSaveButton.Name = "CxSaveButton";
             this.CxSaveButton.Size = new System.Drawing.Size(75, 23);
             this.CxSaveButton.TabIndex = 2;
@@ -153,7 +153,7 @@ namespace Silkroski_C969_Revised.Forms
             // 
             // CxCancelBtn
             // 
-            this.CxCancelBtn.Location = new System.Drawing.Point(381, 591);
+            this.CxCancelBtn.Location = new System.Drawing.Point(382, 365);
             this.CxCancelBtn.Name = "CxCancelBtn";
             this.CxCancelBtn.Size = new System.Drawing.Size(75, 23);
             this.CxCancelBtn.TabIndex = 2;
