@@ -5,6 +5,8 @@ using System.Net;
 using System.Security;
 using System.Windows.Forms;
 using Silkroski_C969_Revised.Properties;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 
 namespace Silkroski_C969_Revised.Models
 {
@@ -12,8 +14,8 @@ namespace Silkroski_C969_Revised.Models
     {
         #region Properties / Fields
 
-        public SqlConnection Connection => _connection; // Getter-only property keeps connection safe, lambda for ease of reading
-        private SqlConnection _connection;
+        public MySqlConnection Connection => _connection; // Getter-only property keeps connection safe, lambda for ease of reading
+        private MySqlConnection _connection;
 
         public bool IsConnected => _isConnected;
         private bool _isConnected;
@@ -45,23 +47,22 @@ namespace Silkroski_C969_Revised.Models
 
             this.userID = userID;
             this.password = password;
-            string connectionString = BuildSqlConnectionString(userID, password);
-            _connection = new SqlConnection(connectionString);
+            string connectionString = BuildMySqlConnectionString(userID, password);
+            _connection = new MySqlConnection(connectionString);
             _connection.Open();
             _isConnected = true;
         }
         
-        private string BuildSqlConnectionString(string userID, string password)
+
+        private string BuildMySqlConnectionString(string userID, string password)
         {
-            //Build a connection string
-            SqlConnectionStringBuilder connectionStringBuilder = new SqlConnectionStringBuilder(); // https://www.c-sharpcorner.com/blogs/how-to-use-sqlconnectionstringbuilder-in-c-sharp1
+            MySqlConnectionStringBuilder connectionStringBuilder = new MySqlConnectionStringBuilder();
             connectionStringBuilder.UserID = userID;
             connectionStringBuilder.Password = password;
-            connectionStringBuilder.InitialCatalog = "client_schedule";
-            connectionStringBuilder.DataSource = "localhost";
-            
-            return connectionStringBuilder.ConnectionString;
+            connectionStringBuilder.Database = "client_schedule";
+            connectionStringBuilder.Server = "localhost";
 
+            return connectionStringBuilder.ConnectionString;
         }
 
         #endregion
