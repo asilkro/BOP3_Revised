@@ -1,14 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using Silkroski_C969_Revised.Models;
@@ -62,12 +53,12 @@ namespace Silkroski_BOP3.Forms
 
         private void Logout()
         {
-
+            Connection.Connection.Close();
         }
 
         private void LogOutButton_Click(object sender, EventArgs e)
         {
-            Login();
+            Logout();
         }
 
         private void QuitButton_Click(object sender, EventArgs e)
@@ -83,7 +74,7 @@ namespace Silkroski_BOP3.Forms
         private void DataGridViewPop()
         {
             //TODO: Implement something that populates the DGV & does "print"
-            SqlConnectionCheck(); // This needs to do something
+            IsMySQLConnected(); // This needs to do something
             DataGridView mainDataGridView = new DataGridView();
             DataTable mainDataTable = new DataTable();
             MySqlDataAdapter mainMySqlDataAdapter = new MySqlDataAdapter();
@@ -92,43 +83,19 @@ namespace Silkroski_BOP3.Forms
             mainDataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
-        public void SqlConnectionCheck()
+        public bool IsMySQLConnected()
         {
-            //TODO: Check SQL connection state -> need to figure out how to record/read the state
+            if (Connection.Connection.State == ConnectionState.Open)
+            {
+                return true;
+            }
+
+            return false;
         }
 
-        protected void GenerateSQLData()
-        {
-            //Setup
-            var sqlScriptToRun = "dataForNewDB_ver4"; // TODO: define file
-            string sqlConnectionString = null; // TODO: Make a sqlConnectionString that can connect to localhost (re-use from LoginScreen)
-            var sqlAllText = File.ReadAllText(sqlScriptToRun); // Get all the text in the script
-            SqlConnection connection = new SqlConnection(sqlConnectionString); // Create new SQL connection
-
-            SqlCommand command = connection.CreateCommand();
-            SqlTransaction transaction = connection.BeginTransaction("Populate DBs");
-
-            //Actual code
-            try
-            {
-                command = new SqlCommand(sqlAllText.ToString(), connection);
-                command.ExecuteNonQuery();
-                transaction.Commit();
-                MessageBox.Show("Data in tables has been populated.", "Successfully committed");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                transaction.Rollback();
-                throw;
-                MessageBox.Show("Rollback successful", "Commit failed");
-            }
-            connection.Close();
-
-        }
         #region Error Checking
 
-
+        //TODO: Error checking / handling
 
         #endregion
 

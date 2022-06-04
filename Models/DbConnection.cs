@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics.Eventing.Reader;
 using System.Net;
 using System.Security;
 using System.Windows.Forms;
@@ -38,22 +39,6 @@ namespace Silkroski_C969_Revised.Models
 
         #region Methods
 
-        public void Connect(string userID, string password)
-        {
-            if (_connection != null && _connection.State != ConnectionState.Closed)
-            {
-                return;
-            }
-
-            this.userID = userID;
-            this.password = password;
-            string connectionString = BuildMySqlConnectionString(userID, password);
-            _connection = new MySqlConnection(connectionString);
-            _connection.Open();
-            _isConnected = true;
-        }
-        
-
         private string BuildMySqlConnectionString(string userID, string password)
         {
             MySqlConnectionStringBuilder connectionStringBuilder = new MySqlConnectionStringBuilder();
@@ -63,6 +48,23 @@ namespace Silkroski_C969_Revised.Models
             connectionStringBuilder.Server = "localhost";
 
             return connectionStringBuilder.ConnectionString;
+        }
+
+        public void Connect(string userID, string password)
+        {
+            if (_connection != null && _connection.State != ConnectionState.Closed)
+            {
+                MessageBox.Show("Not connecting, returning early");
+                return;
+            }
+
+            this.userID = userID;
+            this.password = password;
+            string connectionString = BuildMySqlConnectionString(userID, password);
+            _connection = new MySqlConnection(connectionString);
+            _connection.Open();
+            _isConnected = true;
+
         }
 
         #endregion

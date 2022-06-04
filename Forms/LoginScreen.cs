@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql;
+using System;
 using System.Globalization;
 using System.Windows.Forms;
 using Silkroski_BOP3.Forms;
@@ -7,6 +8,9 @@ namespace Silkroski_BOP3
 {
     public partial class LoginScreen : Form
     {
+        public string Language => _language; // Getter-only property keeps connection safe, lambda for ease of reading
+        private string _language;
+
         public LoginScreen()
         {
             InitializeComponent();
@@ -44,10 +48,12 @@ namespace Silkroski_BOP3
             {
                 case "United States":
                     SetToEnglish();
+                    _language = "US-EN";
                     break;
 
                 case "Germany":
                     SetToGerman();
+                    _language = "DE-DE";
                     break;
 
                 default:
@@ -85,7 +91,15 @@ namespace Silkroski_BOP3
             }
             else
             {
-                MessageBox.Show("Invalid login", "Login error");
+                if (Language == "DE-DE")
+                {
+                    Fehlerbehandlung();
+                }
+                else
+                {
+                    ErrorHandling();
+                }
+                // MessageBox.Show("Invalid login", "Login error"); //This should be unnecessary now.
             }
         }
 
@@ -107,9 +121,5 @@ namespace Silkroski_BOP3
 
         #endregion
 
-        private void debugSQLbutton_Click(object sender, EventArgs e)
-        {
-            //TODO: Does this need to exist?
-        }
     }
 }
