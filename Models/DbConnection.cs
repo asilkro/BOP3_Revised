@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Net;
 using System.Security;
 using System.Windows.Forms;
 using Silkroski_C969_Revised.Properties;
@@ -56,13 +57,11 @@ namespace Silkroski_C969_Revised.Models
             SqlConnectionStringBuilder connectionStringBuilder = new SqlConnectionStringBuilder(); // https://www.c-sharpcorner.com/blogs/how-to-use-sqlconnectionstringbuilder-in-c-sharp1
             connectionStringBuilder.UserID = userID;
             connectionStringBuilder.Password = password;
-            connectionStringBuilder.Authentication = SqlAuthenticationMethod.SqlPassword;
-            connectionStringBuilder.ApplicationName = "Silkroski_BOP3";
-            connectionStringBuilder.InitialCatalog = "client_schedule"; //TODO: set up in
-            connectionStringBuilder.DataSource = "LOCALHOST";
-            // This all matches the data that MySQL Workbench used
-
+            connectionStringBuilder.InitialCatalog = "client_schedule";
+            connectionStringBuilder.DataSource = "localhost";
+            
             return connectionStringBuilder.ConnectionString;
+
         }
 
         #endregion
