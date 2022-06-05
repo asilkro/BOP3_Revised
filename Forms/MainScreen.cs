@@ -49,7 +49,6 @@ namespace Silkroski_BOP3.Forms
         public void OnLoginSubmitted(string userID, string password)
         {
             Connection.Connect(userID, password);
-            PopulateAllAppointments();
         }
 
         private void Logout()
@@ -88,7 +87,35 @@ namespace Silkroski_BOP3.Forms
                 MyDA.Fill(appointmentsDataTable);
                 bindingSource.DataSource = appointmentsDataTable;
 
-                dataGridView1.DataSource = bindingSource;
+                customer_DGV.DataSource = bindingSource;
+            }
+            else
+            {
+                MessageBox.Show("Active SQL connection not found." +
+                                "Please try re-logging in.",
+                    "SQL Connection not found");
+                Logout();
+            }
+
+        }
+
+        private void PopulateAllCustomers()
+        {
+            //TODO: Implement something that populates the DGV & does "print"
+            if (IsMySQLConnected() == true)
+            {
+                //Define variables
+                MySqlDataAdapter MyDA = new MySqlDataAdapter();
+                string sqlSelectAll = "SELECT * from customer"; //Select all customer
+                MyDA.SelectCommand = new MySqlCommand(sqlSelectAll, Connection.Connection);
+                DataTable cxDataTable = new DataTable();
+                BindingSource cxBindingSource = new BindingSource();
+
+                //Start
+                MyDA.Fill(cxDataTable);
+                cxBindingSource.DataSource = cxDataTable;
+
+                customer_DGV.DataSource = cxBindingSource;
             }
             else
             {
@@ -165,6 +192,12 @@ namespace Silkroski_BOP3.Forms
         {
             MessageBox.Show("Please login to continue", "Login required");
             Login();
+        }
+
+        private void DBG_populate_btn_Click(object sender, EventArgs e)
+        {
+            PopulateAllAppointments();
+            PopulateAllCustomers();
         }
     }
 
