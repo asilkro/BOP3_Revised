@@ -78,7 +78,8 @@ namespace Silkroski_BOP3.Forms
             {
                 //Define variables
                 MySqlDataAdapter MyDA = new MySqlDataAdapter();
-                string sqlSelectAll = "SELECT a.appointmentId, c.customerName, u.userName, a.start FROM appointment AS a JOIN customer AS c ON a.customerId = c.customerId JOIN user AS u ON u.userId = a.userId;"; //Select all appointments
+                string sqlSelectAll = "SELECT a.type as "Appointment Type", c.customerName as "Customer Name", a.appointmentId as "Appointment #", u.userName as "Consultant", a.start as "Appointment Time" FROM appointment AS a JOIN customer AS c ON a.customerId = c.customerId JOIN user AS u ON u.userId = a.userId order by start;"
+                    // This is valid SQL but VS can't handle it for some reason?
                 MyDA.SelectCommand = new MySqlCommand(sqlSelectAll, Connection.Connection);
                 DataTable appointmentsDataTable = new DataTable();
                 BindingSource bindingSource = new BindingSource();
