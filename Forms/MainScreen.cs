@@ -49,6 +49,7 @@ namespace Silkroski_BOP3.Forms
         public void OnLoginSubmitted(string userID, string password)
         {
             Connection.Connect(userID, password);
+            PopulateAllAppointments();
         }
 
         private void Logout()
@@ -71,16 +72,32 @@ namespace Silkroski_BOP3.Forms
             MessageBox.Show("Refreshing data");
         }
 
-        private void DataGridViewPop()
+        private void PopulateAllAppointments()
         {
             //TODO: Implement something that populates the DGV & does "print"
-            IsMySQLConnected(); // This needs to do something
-            DataGridView mainDataGridView = new DataGridView();
-            DataTable mainDataTable = new DataTable();
-            MySqlDataAdapter mainMySqlDataAdapter = new MySqlDataAdapter();
-            mainMySqlDataAdapter.FillAsync(mainDataTable);
-            mainDataGridView.DataSource = mainDataTable;
-            mainDataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            if (IsMySQLConnected() == true)
+            {
+                //Define variables
+                MySqlDataAdapter MyDA = new MySqlDataAdapter();
+                string sqlSelectAll = "SELECT * from appointment"; //Select all appointments
+                MyDA.SelectCommand = new MySqlCommand(sqlSelectAll, Connection.Connection);
+                DataTable appointmentsDataTable = new DataTable();
+                BindingSource bindingSource = new BindingSource();
+                
+                //Start
+                MyDA.Fill(appointmentsDataTable);
+                bindingSource.DataSource = appointmentsDataTable;
+
+                dataGridView1.DataSource = bindingSource;
+            }
+            else
+            {
+                MessageBox.Show("Active SQL connection not found." +
+                                "Please try re-logging in.",
+                    "SQL Connection not found");
+                Logout();
+            }
+
         }
 
         public bool IsMySQLConnected()
