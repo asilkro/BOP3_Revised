@@ -78,7 +78,7 @@ namespace Silkroski_BOP3.Forms
             {
                 //Define variables
                 MySqlDataAdapter MyDA = new MySqlDataAdapter();
-                string sqlSelectAll = "SELECT * from appointment"; //Select all appointments
+                string sqlSelectAll = "SELECT a.appointmentId, c.customerName, u.userName, a.start FROM appointment AS a JOIN customer AS c ON a.customerId = c.customerId JOIN user AS u ON u.userId = a.userId;"; //Select all appointments
                 MyDA.SelectCommand = new MySqlCommand(sqlSelectAll, Connection.Connection);
                 DataTable appointmentsDataTable = new DataTable();
                 BindingSource bindingSource = new BindingSource();
@@ -87,7 +87,7 @@ namespace Silkroski_BOP3.Forms
                 MyDA.Fill(appointmentsDataTable);
                 bindingSource.DataSource = appointmentsDataTable;
 
-                customer_DGV.DataSource = bindingSource;
+                appointments_DGV.DataSource = bindingSource;
             }
             else
             {
@@ -106,7 +106,7 @@ namespace Silkroski_BOP3.Forms
             {
                 //Define variables
                 MySqlDataAdapter MyDA = new MySqlDataAdapter();
-                string sqlSelectAll = "SELECT * from customer"; //Select all customer
+                string sqlSelectAll = "SELECT c.customerName FROM customer AS ci JOIN customer AS c ON c.customerId = ci.customerId;"; //Select customers
                 MyDA.SelectCommand = new MySqlCommand(sqlSelectAll, Connection.Connection);
                 DataTable cxDataTable = new DataTable();
                 BindingSource cxBindingSource = new BindingSource();
