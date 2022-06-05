@@ -153,6 +153,7 @@ namespace Silkroski_BOP3.Forms
             this.FullViewBtn.TabIndex = 2;
             this.FullViewBtn.Text = "All Appointments";
             this.FullViewBtn.UseVisualStyleBackColor = true;
+            this.FullViewBtn.Click += new System.EventHandler(this.FullViewBtn_Click);
             // 
             // WeekViewBtn
             // 
@@ -234,7 +235,7 @@ namespace Silkroski_BOP3.Forms
             // DBG_populate_btn
             // 
             this.DBG_populate_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DBG_populate_btn.Location = new System.Drawing.Point(473, 536);
+            this.DBG_populate_btn.Location = new System.Drawing.Point(819, 369);
             this.DBG_populate_btn.Name = "DBG_populate_btn";
             this.DBG_populate_btn.Size = new System.Drawing.Size(212, 73);
             this.DBG_populate_btn.TabIndex = 6;

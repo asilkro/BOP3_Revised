@@ -78,8 +78,8 @@ namespace Silkroski_BOP3.Forms
             {
                 //Define variables
                 MySqlDataAdapter MyDA = new MySqlDataAdapter();
-                string sqlSelectAll = "SELECT a.type as "Appointment Type", c.customerName as "Customer Name", a.appointmentId as "Appointment #", u.userName as "Consultant", a.start as "Appointment Time" FROM appointment AS a JOIN customer AS c ON a.customerId = c.customerId JOIN user AS u ON u.userId = a.userId order by start;"
-                    // This is valid SQL but VS can't handle it for some reason?
+                string sqlSelectAll =
+                    "SELECT a.type as \"Appointment Type\", c.customerName as \"Customer Name\", a.appointmentId as \"Appointment #\", u.userName as \"Consultant\", a.start as \"Appointment Time\" FROM appointment AS a JOIN customer AS c ON a.customerId = c.customerId JOIN user AS u ON u.userId = a.userId order by start;";
                 MyDA.SelectCommand = new MySqlCommand(sqlSelectAll, Connection.Connection);
                 DataTable appointmentsDataTable = new DataTable();
                 BindingSource bindingSource = new BindingSource();
@@ -107,7 +107,7 @@ namespace Silkroski_BOP3.Forms
             {
                 //Define variables
                 MySqlDataAdapter MyDA = new MySqlDataAdapter();
-                string sqlSelectAll = "SELECT c.customerName FROM customer AS ci JOIN customer AS c ON c.customerId = ci.customerId;"; //Select customers
+                string sqlSelectAll = "SELECT c.customerName as \"Customer Name\" FROM customer AS ci JOIN customer AS c ON c.customerId = ci.customerId;"; //Select customers
                 MyDA.SelectCommand = new MySqlCommand(sqlSelectAll, Connection.Connection);
                 DataTable cxDataTable = new DataTable();
                 BindingSource cxBindingSource = new BindingSource();
@@ -197,8 +197,12 @@ namespace Silkroski_BOP3.Forms
 
         private void DBG_populate_btn_Click(object sender, EventArgs e)
         {
-            PopulateAllAppointments();
             PopulateAllCustomers();
+        }
+
+        private void FullViewBtn_Click(object sender, EventArgs e)
+        {
+            PopulateAllAppointments();
         }
     }
 
