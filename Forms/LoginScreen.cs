@@ -11,6 +11,7 @@ namespace Silkroski_BOP3
         public string Language => _language; // Getter-only property keeps connection safe, lambda for ease of reading
         private string _language;
 
+        #region Constructors
         public LoginScreen()
         {
             InitializeComponent();
@@ -24,15 +25,9 @@ namespace Silkroski_BOP3
             mainScreen.Hide();
         }
 
-        private void ExitBtnClick(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+        #endregion
 
-        private void ClearBtn_Click(object sender, EventArgs e)
-        {
-            FieldsClear();
-        }
+        #region Methods
 
         private void FieldsClear()
         {
@@ -40,7 +35,10 @@ namespace Silkroski_BOP3
             PasswordField.Text = null;
         }
 
-        #region Locale //TODO: Add error messages in German
+        #endregion
+
+
+        #region Languages / Sprache //TODO: Add error messages in German
 
         private void SetLanguage()
         {
@@ -81,7 +79,28 @@ namespace Silkroski_BOP3
             ExitBtn.Text = "Exit";
         }
 
+        public void Fehlerbehandlung() // Generic message in English
+        {
+            //TODO: Error handling language in German
+            MessageBox.Show("Bei Ihrer Anwendung ist ein Fehler aufgetreten.", "Fehlermeldung");
+        }
+
+        public void ErrorHandling() // Generic message in English
+        {
+            //TODO: Error handling language in English
+            MessageBox.Show("Your application encountered an error.", "Error Message");
+        }
+
         #endregion
+        
+
+        #region Error Handling
+
+        //TODO: Error handling section
+
+        #endregion
+
+        #region Events
 
         private void LoginBtn_Click(object sender, EventArgs e)
         {
@@ -103,20 +122,14 @@ namespace Silkroski_BOP3
             }
         }
 
-        #region Error Handling
-
-        
-
-        public void Fehlerbehandlung()
+        private void ExitBtnClick(object sender, EventArgs e)
         {
-            //TODO: Error handling language in German
-            MessageBox.Show("Bei Ihrer Anwendung ist ein Fehler aufgetreten.", "Fehlermeldung");
+            Application.Exit();
         }
 
-        public void ErrorHandling()
+        private void ClearBtn_Click(object sender, EventArgs e)
         {
-            //TODO: Error handling language in English
-            MessageBox.Show("Your application encountered an error.", "Error Message");
+            FieldsClear();
         }
 
         #endregion
