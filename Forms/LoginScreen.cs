@@ -1,6 +1,7 @@
 ﻿using MySql;
 using System;
 using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
 using Silkroski_BOP3.Forms;
 
@@ -79,7 +80,7 @@ namespace Silkroski_BOP3
             ExitBtn.Text = "Exit";
         }
 
-        public void Fehlerbehandlung() // Generic message in English
+        public void Fehlerbehandlung() // Generic message in German
         {
             //TODO: Error handling language in German
             MessageBox.Show("Bei Ihrer Anwendung ist ein Fehler aufgetreten.", "Fehlermeldung");
@@ -104,22 +105,7 @@ namespace Silkroski_BOP3
 
         private void LoginBtn_Click(object sender, EventArgs e)
         {
-            if (UserField.Text == "test" && PasswordField.Text == "test") // a valid login
-            {
-                MainScreen.Instance.OnLoginSubmitted(UserField.Text, PasswordField.Text);
-            }
-            else
-            {
-                if (Language == "DE-DE")
-                {
-                    Fehlerbehandlung();
-                }
-                else
-                {
-                    ErrorHandling();
-                }
-                // MessageBox.Show("Invalid login", "Login error"); //This should be unnecessary now.
-            }
+            OnLoginButtonClick();
         }
 
         private void ExitBtnClick(object sender, EventArgs e)
@@ -132,6 +118,51 @@ namespace Silkroski_BOP3
             FieldsClear();
         }
 
+        private void OnLoginButtonClick()
+        {
+            if (Language == "DE-DE" && UserField.Text == null || PasswordField.Text == null)
+            {
+               MessageBox.Show("Bitte überprüfen Sie die Anmeldefelder und versuchen Sie es erneut.",
+                   "Ungültige Eingabe");
+            }
+            else if (Language == "DE-DE")
+            {
+                try
+                {
+                    MainScreen.Instance.OnLoginSubmitted(UserField.Text, PasswordField.Text);
+                    //TODO: log attempt and result
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    Fehlerbehandlung(); //TODO: More useful error
+                    throw;
+                }
+            }
+            else if (Language == "US-EN" && UserField.Text == null || PasswordField.Text == null)
+            {
+                MessageBox.Show("Please check the login fields and try again.",
+                    "Invalid Input");
+            }
+            else if (Language == "US-EN")
+            {
+                try
+                {
+                    MainScreen.Instance.OnLoginSubmitted(UserField.Text, PasswordField.Text);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    ErrorHandling(); //TODO: More useful error
+                    throw;
+                }
+            }
+            else // Reminder to check configuration
+            {
+                MessageBox.Show("Your current system configuration is not supported by this application.", "ERROR: Unsupported system configuration");
+            }
+        }
+        
         #endregion
 
     }
