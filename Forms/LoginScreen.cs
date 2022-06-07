@@ -120,10 +120,15 @@ namespace Silkroski_BOP3
 
         private void OnLoginButtonClick()
         {
-            if (Language == "DE-DE" && UserField.Text.Length == 0 || PasswordField.Text.Length == 0)
+            if (Language == "DE-DE" && UserField.Text.Length == 0)
             {
-               MessageBox.Show("Bitte überprüfen Sie die Anmeldefelder und versuchen Sie es erneut.",
-                   "Ungültige Eingabe");
+               MessageBox.Show("Bitte geben Sie einen Benutzernamen ein",
+                   "Benutzername ist nicht vorhanden");
+            }
+            else if (Language == "DE-DE" && PasswordField.Text.Length == 0)
+            {
+                MessageBox.Show("Bitte Passwort eingeben",
+                    "Leeres Passwortfeld");
             }
             else if (Language == "DE-DE")
             {
@@ -139,16 +144,22 @@ namespace Silkroski_BOP3
                     throw;
                 }
             }
-            else if (Language == "US-EN" && UserField.Text.Length == 0 || PasswordField.Text.Length == 0)
+            else if (Language == "US-EN" && UserField.Text.Length == 0)
             {
-                MessageBox.Show("Please check the login fields and try again.",
-                    "Invalid Input");
+                MessageBox.Show("Please enter a username",
+                    "Username is not present");
+            }
+            else if (Language == "US-EN" && PasswordField.Text.Length == 0)
+            {
+                MessageBox.Show("Please enter a password",
+                    "Empty password field");
             }
             else if (Language == "US-EN")
             {
                 try
                 {
                     MainScreen.Instance.OnLoginSubmitted(UserField.Text, PasswordField.Text);
+                    //TODO: log attempt and result
                 }
                 catch (Exception e)
                 {
