@@ -2,6 +2,7 @@
 using System.Data;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using Silkroski_C969_Revised.Forms;
 using Silkroski_C969_Revised.Models;
 
 namespace Silkroski_BOP3.Forms
@@ -204,6 +205,14 @@ namespace Silkroski_BOP3.Forms
         {
             PopulateAllAppointments();
         }
+
+        private void CreateCxBtn_Click(object sender, EventArgs e)
+        {
+            CustomerForm customerForm = new CustomerForm();
+            customerForm.Show();
+            this.Hide();
+        }
+
     }
 
 }

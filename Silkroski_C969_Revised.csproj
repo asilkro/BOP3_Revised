@@ -137,7 +137,6 @@
     <Compile Include="Models\Alert.cs" />
     <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\City.cs" />
-    <Compile Include="Models\Connection.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\DateTime.cs" />

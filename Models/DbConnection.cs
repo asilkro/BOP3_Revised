@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Data;
-using System.Data.SqlClient;
 using System.Diagnostics.Eventing.Reader;
 using System.Net;
 using System.Security;
 using System.Windows.Forms;
-using Silkroski_C969_Revised.Properties;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
@@ -39,13 +37,14 @@ namespace Silkroski_C969_Revised.Models
 
         #region Methods
 
-        private string BuildMySqlConnectionString(string userID, string password)
+        public string BuildMySqlConnectionString(string userID, string password)
         {
             MySqlConnectionStringBuilder connectionStringBuilder = new MySqlConnectionStringBuilder();
             connectionStringBuilder.UserID = userID;
             connectionStringBuilder.Password = password;
             connectionStringBuilder.Database = "client_schedule";
             connectionStringBuilder.Server = "localhost";
+            connectionStringBuilder.AllowBatch = true; // allows sending multiple commands in one query -> CustomerForm queries may not work without this
 
             return connectionStringBuilder.ConnectionString;
         }
@@ -64,7 +63,12 @@ namespace Silkroski_C969_Revised.Models
             _connection = new MySqlConnection(connectionString);
             _connection.Open();
             _isConnected = true;
+            
+        }
 
+        static private string GetConnectionString() // Maybe can remove later?
+        {
+            return "Server=localhost;Database=client_schedule;User Id=test;Password=test;AllowBatch=true;";
         }
 
         #endregion

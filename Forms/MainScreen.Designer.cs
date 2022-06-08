@@ -123,6 +123,7 @@ namespace Silkroski_BOP3.Forms
             this.CreateCxBtn.TabIndex = 2;
             this.CreateCxBtn.Text = "Create Customer";
             this.CreateCxBtn.UseVisualStyleBackColor = true;
+            this.CreateCxBtn.Click += new System.EventHandler(this.CreateCxBtn_Click);
             // 
             // UpdateCxBtn
             // 

@@ -17,13 +17,21 @@ namespace Silkroski_BOP3
         {
             InitializeComponent();
             SetLanguage();
+            TimeSaver();
         }
 
         public LoginScreen(MainScreen mainScreen)
         {
             InitializeComponent();
             SetLanguage();
+            TimeSaver();
             mainScreen.Hide();
+        }
+
+        private void TimeSaver() //TODO: REMOVE THIS BEFORE SHIPPING
+        {
+            UserField.Text = "test";
+            PasswordField.Text = "test";
         }
 
         #endregion
@@ -34,6 +42,12 @@ namespace Silkroski_BOP3
         {
             UserField.Text = null;
             PasswordField.Text = null;
+        }
+
+        public void GetUserIDAndPW()
+        {
+            string UserID = UserField.Text;
+            string UserPW = PasswordField.Text;
         }
 
         #endregion
@@ -106,6 +120,9 @@ namespace Silkroski_BOP3
         private void LoginBtn_Click(object sender, EventArgs e)
         {
             OnLoginButtonClick();
+            this.Close();
+
+            GetUserIDAndPW();
         }
 
         private void ExitBtnClick(object sender, EventArgs e)

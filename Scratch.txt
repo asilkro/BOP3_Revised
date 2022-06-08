@@ -4,3 +4,105 @@
 - no other logging required
 
 ConnectionString - set in App.Config and call elsewhere
+
+bool validated = ValidCustomerData();
+
+if(validated == true){
+ // Save to DB
+  string custumerName = this.CxNameTB.Text;
+  string address = this.CxAddress1TB.Text;
+  string address2 = this.CxAddress2TB.Text;
+  string city = this.CxCity.Text;
+  string postalCode = this.CxPostalTB.Text;
+  string countryName = this.CxCountryTB.Text;
+  string createdBy = UserID;
+  string createdDate = DateTime.now();
+  int countryID = 0;
+  int cityID = 0;
+  int addressID = 0;
+  
+  // 1 City, 2 Address, 3 Customer;
+  
+  string countryCMD = $"SELECT COUNTRYID FROM COUNTRY WHERE COUNTRY = '{countryName}'";
+  string cityCmd = $"INSERT INTO CITY (CITY, COUNTRYID, CREATEDDATE, CREATEDBY, LASTUPDATE, LASTUPDATEDBY) " +
+    				$"VALUES ('{city}', {countryID}, '{createdDate}', '{createdBy}', '{createdDate}', '{createdBy}')";
+  string cityIdCmd = $"SELECT CITYID FROM CITY WHERE CITY = '{city}' AND COUNTRYID = {countryID} AND CREATEDBY = '{createdBy}'";
+  string addressCmd = $"INSERT INTO ADDRESS (ADDRESS, ADDRESS2, CITYID, POSTALCODE, PHONE, CREATEDDATE, CREATEDBY, LASTUPDATE, LASTUPDATEBY) " +
+    					$"VALUES ('{address}','{address2}', {cityID}, '{postalCode}', '1234567898', '{createdDate}', '{createdBy}', '{createdDate}', '{createdBy}')";
+  string addressIdCmd = $"SELECT ADDRESSID FROM ADDRESS WHERE ADDRESS = '{address}' AND ADDRESS2 = '{address2}'";
+  String customerCmd = $"INSERT INTO CUSTOMER (CUSTOMERNAME, ADDRESSID, ACTIVE, CREATEDDATE, CREATEDBY, LASTUPDATE, LASTUPDATEBY) " + 
+    					$"VALUES ('{customerName}', {addressID}, 1, '{createdDate}', '{createdBy}', '{createdDate}', '{createdBy}')";
+  
+  
+  // get the country id to store it in our variable.
+  using (SqlConnection conn = new SqlConnection()){
+    conn.ConnectionString = GetConnectionString();
+    conn.Open(); // Opens the connection between app and server.
+ 
+    SqlCommand cmd = new SqlCommand(countryCMD, conn);
+    
+    // Try and catch to avoid errors.
+    try{
+      SqlDataReader reader = cmd.ExecuteReader();
+      
+      while(reader.Read()){
+        countryID = reader.GetInt32(0);
+        somethingelse = reader.GetString(1);
+      }
+      
+      if(countryID != 0){
+            cmd = new SqlCommand(cityCmd, conn);
+      		cmd.ExecuteNonQuery();
+      }
+      
+      cmd = new SqlCommand(cityIdCmd, conn);
+      reader = cmd.ExecuteReader(); // Returns values using array system and column index positions.
+      
+      while(reader.Read()){
+        cityID = reader.GetInt32(0);
+      }
+      
+      if(cityID !=0){
+        cmd = new SqlCommand(addressCmd, conn);
+        cmd.ExecuteNonQuery(); // Returns no value so basically a void method.
+      }
+      
+      cmd = new SqlCommand(addressIdCmd, conn);
+      reader = cmd.ExecuteReader(); // Returns values using array system and column index positions.
+      
+      while(reader.Read()){
+        addressID = reader.GetInt32(0);
+      }
+      
+      if(addressID !=0){
+        cmd = new SqlCommand(customerCmd, conn);
+        cmd.ExecuteNonQuery();
+      }
+
+      MessageBox.Show("Customer Saved.");
+      
+    }
+    catch(Exception ex){
+     MessageBox.Show(ex.Message); 
+    }
+    
+    
+    
+  }
+  
+  
+  
+}else{
+ MessageBox.Show("Error while saving."); 
+}
+
+static private string GetConnectionString()
+{
+  return "Server=KINGDOMRAGE\\BATISTADATABASEC;Database=TimApp;User Id=alexis;Password=Wrar3c5E_A*;MultipleActiveResultSets=true;";
+}
+
+
+while(reader.Read())
+{
+ carList.Add(reader.GetString(0)); 
+}
